@@ -6,39 +6,69 @@
 <body>
 <h2>Painter entry Kyathi Jagadeeswar Pagadala</h2>
 <form>
-    <label for="Password" class="form-label">The hidden painter name</label>
-    <input type="password" class="form-control" id="Password" value="Monet"> <br>
-
-    <label for="form1_guess">Guess the painter</label>
-    <input type ="text" id="form1_guess" name="form1_guess" autofocus> <br>
-
-    <input type="button" onclick="checkPainter()" value="Check the guess">
-</form>
-<p id="result">The results will be displayed </p>
-
-<script> 
-good =0;
-let oops =0;
-
-function checkPainter(){
-    console.log("Check the guess")
-    password = document.getElementById("Password").value
-    guess = document.getElementById("form1_guess").value
-    confirmed = confirm("Are these values matched ?"+password+" and "+guess)
     
-    out = document.getElementById("result")
-    if(password==guess){
-        alert("You got it right")
-        good=good+1
-        out.innerHTML = " Correct answer: "+ good + "Wrong answer: "+ oops;
+    <label for="password  ">The hidden painter name</label>
+    <input type ="password" id="form_password" name="password" min=10 max=50 step=2 value="Monet"> <br>
 
-    } else {
-        alert("Sorry")
-        oops=oops+1
+    <label for="form1_Guess">Guess the painter</label>
+    <input type ="text" id="form_guess" name="guess" autofocus> <br>
 
-        out.innerHTML = "Correct amswer: "+ good + "Wrong answer: "+ oops;
-    }
+    <button type="button" class="btn" onclick="checkPainter()" value="Check the guess">Submit</button>
+
+
+    <p id="result">This Results will be replaced </p>
+
+</form>
+
+<br>
+<div class="container">
+<img src="J01.jpg" id="image" onclick="selectImage()" alt="J01" style="width: 100px;height: 100px;">
+</div>
+<script> 
+good=0
+let oops=0
+useImage = 1
+function checkPainter(){
+console.log("Check the guess")
+
+password= document.getElementById("form_password").value
+guess = document.getElementById("form_guess").value
+confirmed = confirm("Are these values are matches ?" + password + " and " + guess)
+out = document.getElementById("result")
+if(password==guess) {
+            alert("You got it right")
+            good = good + 1
+            out.innerHTML = "Correct guess: " + good + " Wrong guess: " + oops;
+        } 
+        else if (oops >= 10) {
+            document.getElementById("btn").onclick = giveAlert();             
+            out.innerHTML = "Correct guess: " + good + " Wrong guess: " + oops;
+        }
+        else {
+
+            alert("Sorry");
+            
+            oops = oops + 1
+            out.innerHTML = "Correct guess: " + good+ " Wrong guess: " + oops;
+        }
 }
+function giveAlert() {
+        alert("Sorry, ran out of guesses.");
+    }
+function selectImage() {
+switch (useImage) {
+    case 1: useImage = useImage + 1
+        image.src="J02.jpg";
+        break;
+    case 2: useImage = useImage + 1
+        image.src = "J03.jpg";
+        break;
+    case 3: useImage = useImage + 1
+        image.src = "J01.jpg";
+        break;
+}
+}
+
 </script>
 </body>
 </html>
